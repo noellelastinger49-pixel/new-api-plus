@@ -163,6 +163,30 @@ docker run --name new-api -d --restart always \
 
 ---
 
+## 🔑 Claude Code Channel
+
+New API supports [Claude Code](https://docs.anthropic.com/en/docs/claude-code) as a dedicated channel type (Type 200), enabling you to use your Anthropic account's OAuth credentials to access Claude models through the gateway.
+
+**Key Capabilities:**
+- **OAuth Authorization** — One-click browser-based Anthropic login, no manual token handling
+- **Auto Credential Refresh** — Background task automatically refreshes tokens before expiry
+- **CLI Credential Compatible** — Paste your `~/.claude/config.json` (`claudeAiOauth` format) directly as the channel key
+- **Built-in Chat** — Chat with Claude models directly in the New API web interface
+
+### Setup Screenshots
+
+| Step 1: Create Channel | Step 2: Authorize & Generate Credentials |
+|:---:|:---:|
+| ![Create Channel](./docs/claude-code/1.new_channel.png) | ![Generate Credentials](./docs/claude-code/2.gen_credentials.png) |
+
+| Step 3: Test Models | Step 4: Chat |
+|:---:|:---:|
+| ![Test Models](./docs/claude-code/3.test_models.png) | ![Chat](./docs/claude-code/4.chat.png) |
+
+📖 **Full Guide:** [Claude Code Channel Configuration](./docs/claude-code/claude_code.md)
+
+---
+
 ## 📚 Documentation
 
 <div align="center">
@@ -257,30 +281,6 @@ docker run --name new-api -d --restart always \
 - You can also append `-low`, `-medium`, or `-high` to any Gemini model name to request the corresponding reasoning effort (no extra thinking-budget suffix needed).
 
 </details>
-
----
-
-## 🔑 Claude Code Channel
-
-New API supports [Claude Code](https://docs.anthropic.com/en/docs/claude-code) as a dedicated channel type (Type 200), enabling you to use your Anthropic account's OAuth credentials to access Claude models through the gateway.
-
-**Key Capabilities:**
-- **OAuth Authorization** — One-click browser-based Anthropic login, no manual token handling
-- **Auto Credential Refresh** — Background task automatically refreshes tokens before expiry
-- **CLI Credential Compatible** — Paste your `~/.claude/config.json` (`claudeAiOauth` format) directly as the channel key
-- **Built-in Chat** — Chat with Claude models directly in the New API web interface
-
-### Setup Screenshots
-
-| Step 1: Create Channel | Step 2: Authorize & Generate Credentials |
-|:---:|:---:|
-| ![Create Channel](./docs/claude-code/1.new_channel.png) | ![Generate Credentials](./docs/claude-code/2.gen_credentials.png) |
-
-| Step 3: Test Models | Step 4: Chat |
-|:---:|:---:|
-| ![Test Models](./docs/claude-code/3.test_models.png) | ![Chat](./docs/claude-code/4.chat.png) |
-
-📖 **Full Guide:** [Claude Code Channel Configuration](./docs/claude-code/claude_code.md)
 
 ---
 

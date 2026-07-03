@@ -163,6 +163,30 @@ docker run --name new-api -d --restart always \
 
 ---
 
+## 🔑 Claude Code 渠道
+
+New API 支持 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 作为独立渠道类型（Type 200），可直接复用 Anthropic 账号的 OAuth 凭据通过网关访问 Claude 模型。
+
+**核心能力：**
+- **OAuth 授权** — 一键浏览器登录 Anthropic 账号，无需手动处理 token
+- **凭据自动刷新** — 后台定时任务在 token 过期前自动刷新
+- **CLI 凭据兼容** — 支持直接粘贴 `~/.claude/config.json` 中的 `claudeAiOauth` 格式作为渠道密钥
+- **即时聊天** — 在 New API 内置聊天界面直接与 Claude 模型对话
+
+### 配置效果图
+
+| 步骤一：创建渠道 | 步骤二：授权生成凭据 |
+|:---:|:---:|
+| ![创建渠道](./docs/claude-code/1.new_channel.png) | ![生成凭据](./docs/claude-code/2.gen_credentials.png) |
+
+| 步骤三：测试模型 | 步骤四：即时聊天 |
+|:---:|:---:|
+| ![测试模型](./docs/claude-code/3.test_models.png) | ![即时聊天](./docs/claude-code/4.chat.png) |
+
+📖 **完整指南：** [Claude Code 渠道配置指南](./docs/claude-code/claude_code.md)
+
+---
+
 ## 📚 文档
 
 <div align="center">
@@ -257,30 +281,6 @@ docker run --name new-api -d --restart always \
 - 也可以直接在 Gemini 模型名称后追加 `-low` / `-medium` / `-high` 来控制思考力度（无需再设置思考预算后缀）
 
 </details>
-
----
-
-## 🔑 Claude Code 渠道
-
-New API 支持 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 作为独立渠道类型（Type 200），可直接复用 Anthropic 账号的 OAuth 凭据通过网关访问 Claude 模型。
-
-**核心能力：**
-- **OAuth 授权** — 一键浏览器登录 Anthropic 账号，无需手动处理 token
-- **凭据自动刷新** — 后台定时任务在 token 过期前自动刷新
-- **CLI 凭据兼容** — 支持直接粘贴 `~/.claude/config.json` 中的 `claudeAiOauth` 格式作为渠道密钥
-- **即时聊天** — 在 New API 内置聊天界面直接与 Claude 模型对话
-
-### 配置效果图
-
-| 步骤一：创建渠道 | 步骤二：授权生成凭据 |
-|:---:|:---:|
-| ![创建渠道](./docs/claude-code/1.new_channel.png) | ![生成凭据](./docs/claude-code/2.gen_credentials.png) |
-
-| 步骤三：测试模型 | 步骤四：即时聊天 |
-|:---:|:---:|
-| ![测试模型](./docs/claude-code/3.test_models.png) | ![即时聊天](./docs/claude-code/4.chat.png) |
-
-📖 **完整指南：** [Claude Code 渠道配置指南](./docs/claude-code/claude_code.md)
 
 ---
 

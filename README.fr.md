@@ -163,6 +163,30 @@ docker run --name new-api -d --restart always \
 
 ---
 
+## 🔑 Canal Claude Code
+
+New API prend en charge [Claude Code](https://docs.anthropic.com/en/docs/claude-code) en tant que type de canal dédié (Type 200), permettant de réutiliser les identifiants OAuth de votre compte Anthropic pour accéder aux modèles Claude via la passerelle.
+
+**Capacités clés :**
+- **Autorisation OAuth** — Connexion Anthropic en un clic via le navigateur, sans manipulation manuelle de tokens
+- **Actualisation automatique des identifiants** — Tâche en arrière-plan qui actualise automatiquement les tokens avant leur expiration
+- **Compatible avec les identifiants CLI** — Collez directement le format `claudeAiOauth` de `~/.claude/config.json` comme clé du canal
+- **Chat intégré** — Discutez avec les modèles Claude directement dans l'interface web de New API
+
+### Captures d'écran
+
+| Étape 1 : Créer le canal | Étape 2 : Autoriser et générer les identifiants |
+|:---:|:---:|
+| ![Créer le canal](./docs/claude-code/1.new_channel.png) | ![Générer les identifiants](./docs/claude-code/2.gen_credentials.png) |
+
+| Étape 3 : Tester les modèles | Étape 4 : Chat |
+|:---:|:---:|
+| ![Tester les modèles](./docs/claude-code/3.test_models.png) | ![Chat](./docs/claude-code/4.chat.png) |
+
+📖 **Guide complet :** [Configuration du canal Claude Code](./docs/claude-code/claude_code.fr.md)
+
+---
+
 ## 📚 Documentation
 
 <div align="center">
@@ -257,30 +281,6 @@ docker run --name new-api -d --restart always \
 - Vous pouvez également ajouter les suffixes `-low`, `-medium` ou `-high` aux modèles Gemini pour fixer le niveau d’effort de raisonnement (sans suffixe de budget supplémentaire).
 
 </details>
-
----
-
-## 🔑 Canal Claude Code
-
-New API prend en charge [Claude Code](https://docs.anthropic.com/en/docs/claude-code) en tant que type de canal dédié (Type 200), permettant de réutiliser les identifiants OAuth de votre compte Anthropic pour accéder aux modèles Claude via la passerelle.
-
-**Capacités clés :**
-- **Autorisation OAuth** — Connexion Anthropic en un clic via le navigateur, sans manipulation manuelle de tokens
-- **Actualisation automatique des identifiants** — Tâche en arrière-plan qui actualise automatiquement les tokens avant leur expiration
-- **Compatible avec les identifiants CLI** — Collez directement le format `claudeAiOauth` de `~/.claude/config.json` comme clé du canal
-- **Chat intégré** — Discutez avec les modèles Claude directement dans l'interface web de New API
-
-### Captures d'écran
-
-| Étape 1 : Créer le canal | Étape 2 : Autoriser et générer les identifiants |
-|:---:|:---:|
-| ![Créer le canal](./docs/claude-code/1.new_channel.png) | ![Générer les identifiants](./docs/claude-code/2.gen_credentials.png) |
-
-| Étape 3 : Tester les modèles | Étape 4 : Chat |
-|:---:|:---:|
-| ![Tester les modèles](./docs/claude-code/3.test_models.png) | ![Chat](./docs/claude-code/4.chat.png) |
-
-📖 **Guide complet :** [Configuration du canal Claude Code](./docs/claude-code/claude_code.fr.md)
 
 ---
 
