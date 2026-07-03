@@ -122,7 +122,6 @@ export function About() {
   const rawContent = data?.data?.trim() ?? ''
   const hasContent = rawContent.length > 0
   const isUrl = hasContent && isHttpUrl(rawContent)
-  const contentIsHtml = hasContent && isLikelyHtml(rawContent)
 
   if (isLoading) {
     return (
@@ -158,24 +157,11 @@ export function About() {
     )
   }
 
-  if (contentIsHtml) {
-    return (
-      <PublicLayout showMainContainer={false}>
-        <RichContent
-          mode='html'
-          htmlVariant='isolated'
-          content={rawContent}
-          className='prose-neutral dark:prose-invert max-w-none'
-        />
-      </PublicLayout>
-    )
-  }
-
   return (
     <PublicLayout>
       <div className='mx-auto max-w-6xl px-4 py-8'>
         <RichContent
-          mode='markdown'
+          mode={isLikelyHtml(rawContent) ? 'html' : 'markdown'}
           content={rawContent}
           className='prose-neutral dark:prose-invert max-w-none'
         />

@@ -16,11 +16,12 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { LayoutDashboard } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
+import { LayoutDashboard } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'sonner'
-
+import { useAuthStore } from '@/stores/auth-store'
+import { api } from '@/lib/api'
 import { Button } from '@/components/ui/button'
 import {
   Card,
@@ -30,8 +31,6 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Switch } from '@/components/ui/switch'
-import { api } from '@/lib/api'
-import { useAuthStore } from '@/stores/auth-store'
 
 type SidebarModuleConfig = {
   enabled: boolean

@@ -19,7 +19,8 @@ For commercial licensing, please contact support@quantumnous.com
 import { useQuery } from '@tanstack/react-query'
 import { ListChecks, RefreshCw } from 'lucide-react'
 import { useTranslation } from 'react-i18next'
-
+import { formatTimestampRelative, formatTimestampToDate } from '@/lib/format'
+import { cn } from '@/lib/utils'
 import { ErrorState } from '@/components/error-state'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -38,8 +39,6 @@ import type {
   SystemTask,
   SystemTaskStatus,
 } from '@/features/system-settings/types'
-import { formatTimestampRelative, formatTimestampToDate } from '@/lib/format'
-import { cn } from '@/lib/utils'
 
 const TASK_LIMIT = 20
 const ACTIVE_POLL_INTERVAL_MS = 8000
@@ -52,8 +51,7 @@ const STATUS_VARIANT: Record<SystemTaskStatus, 'secondary' | 'destructive'> = {
 }
 
 const STATUS_CLASS_NAME: Record<SystemTaskStatus, string> = {
-  pending:
-    'bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
+  pending: 'bg-amber-50 text-amber-700 dark:bg-amber-500/15 dark:text-amber-300',
   running:
     'bg-sky-50 text-sky-700 dark:bg-sky-500/15 dark:text-sky-300 [&_span]:bg-sky-500',
   succeeded:
@@ -175,11 +173,11 @@ function SystemTasksTable(props: SystemTasksTableProps) {
                     </span>
                   </div>
                 </TableCell>
-                <TableCell className='text-muted-foreground max-w-[280px] truncate py-3 align-middle font-mono text-xs'>
+                <TableCell className='text-muted-foreground max-w-[280px] truncate py-3 font-mono text-xs align-middle'>
                   {task.locked_by || '-'}
                 </TableCell>
                 <TableCell
-                  className='text-muted-foreground py-3 align-middle text-xs whitespace-nowrap'
+                  className='text-muted-foreground py-3 text-xs whitespace-nowrap align-middle'
                   title={formatTimestampToDate(task.updated_at)}
                 >
                   {formatTimestampRelative(
@@ -189,7 +187,7 @@ function SystemTasksTable(props: SystemTasksTableProps) {
                   )}
                 </TableCell>
                 <TableCell
-                  className='text-destructive max-w-[220px] truncate py-3 pr-4 align-middle text-xs'
+                  className='text-destructive max-w-[220px] truncate py-3 pr-4 text-xs align-middle'
                   title={task.error || undefined}
                 >
                   {task.error || '-'}

@@ -144,6 +144,16 @@ export const CHANNEL_TYPE_CONFIGS: Record<number, ChannelTypeConfig> = {
       models: 'Models exposed by this channel',
     },
   },
+  200: {
+    id: 200,
+    name: CHANNEL_TYPES[200],
+    icon: 'anthropic',
+    defaultBaseUrl: 'https://api.anthropic.com',
+    hints: {
+      key: 'Claude Code OAuth JSON credential (generated via "Authorize" button)',
+      models: 'claude-opus-4-5,claude-sonnet-4-5,claude-haiku-4-5',
+    },
+  },
 }
 
 /**

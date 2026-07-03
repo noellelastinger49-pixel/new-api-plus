@@ -17,7 +17,6 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 For commercial licensing, please contact support@quantumnous.com
 */
 import { z } from 'zod'
-
 import {
   CHANNEL_STATUS,
   ERROR_MESSAGES,
@@ -97,6 +96,20 @@ function isCodexCredential(value: string | undefined): boolean {
       parsed.access_token.trim().length > 0 &&
       typeof parsed.account_id === 'string' &&
       parsed.account_id.trim().length > 0
+    )
+  } catch {
+    return false
+  }
+}
+
+function isClaudeCodeCredential(value: string | undefined): boolean {
+  try {
+    const parsed = parseOptionalJson(value)
+    if (parsed === undefined) return true
+    return (
+      isJsonObjectValue(parsed) &&
+      typeof parsed.access_token === 'string' &&
+      parsed.access_token.trim().length > 0
     )
   } catch {
     return false
@@ -261,6 +274,23 @@ export const channelFormSchema = z
           ctx,
           'key',
           'Codex credential must be a JSON object with access_token and account_id'
+        )
+      }
+    }
+
+    if (data.type === 200) {
+      if (data.multi_key_mode && data.multi_key_mode !== 'single') {
+        addRequiredIssue(
+          ctx,
+          'multi_key_mode',
+          'Claude Code channels do not support batch creation'
+        )
+      }
+      if (data.key?.trim() && !isClaudeCodeCredential(data.key)) {
+        addRequiredIssue(
+          ctx,
+          'key',
+          'Claude Code credential must be a JSON object with access_token'
         )
       }
     }

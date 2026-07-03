@@ -258,6 +258,30 @@ docker run --name new-api -d --restart always \
 
 ---
 
+## 🔑 Claude Code チャンネル
+
+New API は [Claude Code](https://docs.anthropic.com/en/docs/claude-code) を独立したチャンネルタイプ（Type 200）としてサポートしており、Anthropic アカウントの OAuth 認証情報を使用してゲートウェイ経由で Claude モデルにアクセスできます。
+
+**主な機能：**
+- **OAuth 認証** — ブラウザでワンクリック Anthropic ログイン、トークンの手動操作不要
+- **認証情報の自動更新** — バックグラウンドタスクがトークンの有効期限前に自動更新
+- **CLI 認証情報互換** — `~/.claude/config.json` の `claudeAiOauth` フォーマットをそのままチャンネルキーとして貼り付け可能
+- **チャット機能** — New API の Web インターフェースで Claude モデルと直接チャット
+
+### 設定スクリーンショット
+
+| ステップ 1：チャンネル作成 | ステップ 2：認証・認証情報生成 |
+|:---:|:---:|
+| ![チャンネル作成](./docs/claude-code/1.new_channel.png) | ![認証情報生成](./docs/claude-code/2.gen_credentials.png) |
+
+| ステップ 3：モデルテスト | ステップ 4：チャット |
+|:---:|:---:|
+| ![モデルテスト](./docs/claude-code/3.test_models.png) | ![チャット](./docs/claude-code/4.chat.png) |
+
+📖 **完全ガイド：** [Claude Code チャンネル設定ガイド](./docs/claude-code/claude_code.md)
+
+---
+
 ## 🤖 モデルサポート
 
 > 詳細については[APIドキュメント - ゲートウェイインターフェース](https://docs.newapi.pro/ja/docs/api)

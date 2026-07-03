@@ -16,11 +16,9 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import type { Row } from '@tanstack/react-table'
 import * as React from 'react'
-
+import type { Row } from '@tanstack/react-table'
 import { StatusBadgeTypeContext } from '@/components/status-badge'
-
 import { getCellLabel, renderCellContent } from './card-cell-utils'
 
 /**

@@ -16,9 +16,8 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 
 For commercial licensing, please contact support@quantumnous.com
 */
-import { getGroups as getUserGroups } from '@/features/users/api'
 import { api, type ApiRequestConfig } from '@/lib/api'
-
+import { getGroups as getUserGroups } from '@/features/users/api'
 import type {
   AddChannelRequest,
   BatchDeleteParams,
@@ -327,6 +326,72 @@ export async function getCodexUsage(
   const res = await api.get(
     `/api/channel/${channelId}/codex/usage`,
     channelActionConfig({ disableDuplicate: true })
+  )
+  return res.data
+}
+
+// ============================================================================
+// Claude Code Channel Operations
+// ============================================================================
+
+export type ClaudeCodeOAuthStartResponse = {
+  success: boolean
+  message?: string
+  data?: {
+    authorize_url?: string
+  }
+}
+
+export type ClaudeCodeOAuthCompleteResponse = {
+  success: boolean
+  message?: string
+  data?: {
+    key?: string
+    account_uuid?: string
+    email?: string
+    expires_at?: string
+  }
+}
+
+export type ClaudeCodeCredentialRefreshResponse = {
+  success: boolean
+  message?: string
+  data?: {
+    expires_at?: string
+    last_refresh?: string
+    account_uuid?: string
+    email?: string
+    channel_id?: number
+  }
+}
+
+export async function startClaudeCodeOAuth(): Promise<ClaudeCodeOAuthStartResponse> {
+  const res = await api.post(
+    '/api/channel/claude-code/oauth/start',
+    {},
+    channelActionConfig()
+  )
+  return res.data
+}
+
+export async function completeClaudeCodeOAuth(
+  input: string
+): Promise<ClaudeCodeOAuthCompleteResponse> {
+  const res = await api.post(
+    '/api/channel/claude-code/oauth/complete',
+    { input },
+    channelActionConfig()
+  )
+  return res.data
+}
+
+export async function refreshClaudeCodeCredential(
+  channelId: number
+): Promise<ClaudeCodeCredentialRefreshResponse> {
+  const res = await api.post(
+    `/api/channel/${channelId}/claude-code/refresh`,
+    {},
+    channelActionConfig()
   )
   return res.data
 }

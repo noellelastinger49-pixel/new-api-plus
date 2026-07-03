@@ -89,7 +89,8 @@ func UpdateSubscriptionPreference(c *gin.Context) {
 	}
 	current := user.GetSetting()
 	current.BillingPreference = pref
-	if err := model.UpdateUserSetting(user.Id, current); err != nil {
+	user.SetSetting(current)
+	if err := user.Update(false); err != nil {
 		common.ApiError(c, err)
 		return
 	}

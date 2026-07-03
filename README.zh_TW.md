@@ -256,6 +256,30 @@ docker run --name new-api -d --restart always \
 
 ---
 
+## 🔑 Claude Code 頻道
+
+New API 支援 [Claude Code](https://docs.anthropic.com/en/docs/claude-code) 作為獨立頻道類型（Type 200），可直接複用 Anthropic 帳號的 OAuth 憑證透過閘道存取 Claude 模型。
+
+**核心能力：**
+- **OAuth 授權** — 一鍵瀏覽器登入 Anthropic 帳號，無需手動處理 token
+- **憑證自動刷新** — 背景排程任務在 token 過期前自動刷新
+- **CLI 憑證相容** — 支援直接貼上 `~/.claude/config.json` 中的 `claudeAiOauth` 格式作為頻道金鑰
+- **即時聊天** — 在 New API 內建聊天介面直接與 Claude 模型對話
+
+### 設定效果圖
+
+| 步驟一：建立頻道 | 步驟二：授權產生憑證 |
+|:---:|:---:|
+| ![建立頻道](./docs/claude-code/1.new_channel.png) | ![產生憑證](./docs/claude-code/2.gen_credentials.png) |
+
+| 步驟三：測試模型 | 步驟四：即時聊天 |
+|:---:|:---:|
+| ![測試模型](./docs/claude-code/3.test_models.png) | ![即時聊天](./docs/claude-code/4.chat.png) |
+
+📖 **完整指南：** [Claude Code 頻道設定指南](./docs/claude-code/claude_code.md)
+
+---
+
 ## 🤖 模型支援
 
 > 詳情請參考 [接口文件 - 閘道接口](https://docs.newapi.pro/zh/docs/api)

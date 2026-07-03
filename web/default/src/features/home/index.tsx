@@ -57,26 +57,11 @@ export function Home() {
       )
     }
 
-    const contentIsHtml = isLikelyHtml(content)
-
-    if (contentIsHtml) {
-      return (
-        <PublicLayout showMainContainer={false}>
-          <RichContent
-            mode='html'
-            htmlVariant='isolated'
-            content={content}
-            className='custom-home-content'
-          />
-        </PublicLayout>
-      )
-    }
-
     return (
       <PublicLayout>
         <div className='mx-auto max-w-6xl px-4 py-8'>
           <RichContent
-            mode='markdown'
+            mode={isLikelyHtml(content) ? 'html' : 'markdown'}
             content={content}
             className='custom-home-content'
           />

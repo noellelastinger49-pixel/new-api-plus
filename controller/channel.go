@@ -15,6 +15,7 @@ import (
 	"github.com/QuantumNous/new-api/i18n"
 	"github.com/QuantumNous/new-api/model"
 	relaychannel "github.com/QuantumNous/new-api/relay/channel"
+	"github.com/QuantumNous/new-api/relay/channel/claude"
 	"github.com/QuantumNous/new-api/relay/channel/gemini"
 	"github.com/QuantumNous/new-api/relay/channel/ollama"
 	"github.com/QuantumNous/new-api/service"
@@ -516,6 +517,20 @@ func validateChannel(channel *model.Channel, isAdd bool) error {
 			}
 			if v, ok := keyMap["account_id"]; !ok || v == nil || strings.TrimSpace(fmt.Sprintf("%v", v)) == "" {
 				return fmt.Errorf("Codex key JSON must include account_id")
+			}
+		}
+	}
+
+	// Claude Code OAuth key validation (optional, only when JSON object is provided).
+	// Accepts both the Claude Code CLI's claudeAiOauth wrapper format and the internal format.
+	if channel.Type == constant.ChannelTypeClaudeCode {
+		trimmedKey := strings.TrimSpace(channel.Key)
+		if isAdd || trimmedKey != "" {
+			if !strings.HasPrefix(trimmedKey, "{") {
+				return fmt.Errorf("Claude Code key must be a valid JSON object")
+			}
+			if _, _, err := service.ParseClaudeCodeOAuthKey(trimmedKey); err != nil {
+				return fmt.Errorf("Claude Code key JSON must include a valid access token")
 			}
 		}
 	}
@@ -1179,6 +1194,14 @@ func FetchModels(c *gin.Context) {
 	// remove line breaks and extra spaces.
 	key := strings.TrimSpace(req.Key)
 	key = strings.Split(key, "\n")[0]
+
+	if req.Type == constant.ChannelTypeClaudeCode {
+		c.JSON(http.StatusOK, gin.H{
+			"success": true,
+			"data":    claude.ModelList,
+		})
+		return
+	}
 
 	if req.Type == constant.ChannelTypeOllama {
 		models, err := ollama.FetchOllamaModels(baseURL, key)
