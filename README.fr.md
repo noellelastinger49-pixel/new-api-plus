@@ -60,6 +60,10 @@
 > - Les utilisateurs doivent s'assurer que leur utilisation est conforme aux conditions d'utilisation en amont et aux lois et réglementations applicables.
 > - Lors de la fourniture de services d'IA générative au public, les utilisateurs doivent se conformer aux exigences réglementaires applicables et remplir toutes les obligations d'enregistrement, de licence, de sécurité du contenu, de vérification d'identité, de conservation des journaux, de fiscalité et d'autorisation en amont requises par leur juridiction.
 
+> [!NOTE]
+> - Ce projet est uniquement destiné à l'apprentissage et à l'échange.
+> - Contact : [https://t.me/jancy1688](https://t.me/jancy1688)
+
 ---
 
 ## 🤝 Partenaires de confiance

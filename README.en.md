@@ -58,6 +58,10 @@
 > - Users should ensure their use complies with upstream terms of service and applicable laws and regulations.
 > - When providing generative AI services to the public, users should comply with applicable regulatory requirements and fulfill all filing, licensing, content safety, real-name verification, log retention, tax, and upstream authorization obligations required by their jurisdiction.
 
+> [!NOTE]
+> - This project is for learning and communication purposes only.
+> - Contact: [https://t.me/jancy1688](https://t.me/jancy1688)
+
 ---
 
 ## 🤝 Trusted Partners
